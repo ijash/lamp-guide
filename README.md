@@ -21,14 +21,17 @@ Sehingga pengguna bisa masuk ke dalam shell Debian linux pada raspberry pi.
 
 ## Pengaturan SSH
 Setalah masuk ke dalam shell, pengguna sebaiknya mengatur pengaturan raspberry agar bisa di akses melalui terminal dari komputer lain. Tehnik ini biasa disebut *remote login* atau SSH (*Secure Shell*). </br>
-Untuk mengaktifkannya, ketikkan perintah ini:</br>
+Untuk mengaktifkannya, SSH server pada Raspberry Pi perlu diaktifkan. Untuk mengaktifkannya, ketikkan perintah dibawah ini:</br>
 `sudo raspi-config`</br>
 sehingga tampilan akan muncul ke tampilan menu **Raspberry Pi Software Configuration Tool **.</br>
 
 
-Pada menu pilihan *raspi-config*, masuk ke **Advanced Options**, lalu pilih **SSH**.
+Pada menu pilihan **raspi-config**, masuk ke **Interfacing Options**, lalu pilih **SSH**.
 
 
-![alt text](images/capture_raspi_config.jpg "Raspberry Pi Software Configuration Tool")</br>
+![alt text](images/raspi-config.png "Raspberry Pi Software Configuration Tool")</br>
 
-![alt text](images/raspi-config-SSH.jpg "SSH")
+![alt text](images/interface-opt.png "Interfacing Option")
+
+lalu pilih `yes` untuk mengaktifkan SSH server pada Raspberry Pi.
+![alt text](images/interface-opt.png "SSH")</br>
