@@ -9,6 +9,20 @@ Mengapa menggunakan Raspberry sebagai server daripada menggunakan penyedia layan
   Pertanyaan yang sekarang muncul adalah, bagaimana cara membuat server web di Raspeberry Pi?
 
 
+## PHP
+
+Pertama-tama, Pengguna harus tahu bahwa PHP adalah bahasa pemrograman yang ditafsirkan (_interpreted language_). Dan seperti dalam kasus server, akronim PHP dapat memiliki beberapa arti. Ketika berbicara tentang PHP, berarti berbicara tentang bahasa atau penerjemah(_interpreter_).
+Di sini, ketika berbicara tentang menginstal PHP, itu berarti akan menginstal _interpreter_, untuk menggunakan bahasa PHP.
+
+PHP (bahasa) biasanya digunakan untuk membuat situs dinamis, artinya bahwa pengguna mengirimkan informasi ke server yang mengembalikan hasil yang dimodifikasi sesuai dengan informasi yang diberikan. Sebaliknya, situs statis tidak menyesuaikan dengan informasi yang diberikan oleh pengguna.
+
+PHP itu gratis, dan dikelola oleh Yayasan PHP, serta Zend Enterprise, dan berbagai perusahaan lain (perlu dicatat bahwa Zend juga penulis _zend framework_ yang terkenal, banyak digunakan dan diakui dalam dunia "bisnis") .
+
+Ini adalah salah satu bahasa pemrograman yang paling banyak digunakan, dan bahkan yang paling banyak digunakan untuk pemrograman web, dengan sekitar 79% pangsa pasar.
+
+Sekali lagi, semua keterampilan yang dapat diperoleh, pada bahasa, atau pada instalasi dan konfigurasi interpreter, akan selalu berguna. Jadi kami hanya dapat menyarankan Anda untuk belajar PHP, yang benar-benar bahasa yang indah dan terlalu sering diremehkan.
+
+
 ## Persiapan Hardware
 *masukan foto2 dan spek*
 
@@ -78,7 +92,7 @@ Untuk melakukan ini, Anda perlu mencoba mengakses Raspberry dari port `80`. Cara
 
 Jika Anda belum memiliki GUI di Raspbian Anda, atau Anda menggunakan SSH untuk terhubung ke Raspberry Anda, Anda dapat menggunakan perintah berikut:
 ```
-wget -O check_apache.html [alamat IP Raspberry]
+wget -O check_apache.html http://127.0.0.1
 
 ```
 Perintah ini akan menyimpan kode HTML dari halaman dalam file "check_apache.html" di direktori saat ini.
@@ -88,9 +102,47 @@ cat ./check_apache.html
 ```
 Jika Anda melihat `It Works!` di dalam kode  berarti Apache telah bekerja dengan semestinya.
 
-Apache menggunakan direktori `/var/www/html` sebagai root untuk situs Anda. Ini berarti bahwa ketika Anda memanggil Raspberry Anda di port 80 (http), Apache mencari file di `/var/www/html`.
-Misalnya, jika Anda memanggil alamat `http://[alamat Raspberry]/contoh`, Apache akan mencari file "contoh" di direktori `/var/www/html`.
+Apache menggunakan direktori `/var/www/html` sebagai root untuk situs. Ini berarti bahwa ketika Anda memanggil Raspberry Anda di port 80 (http), Apache mencari file di `/var/www/html`.
+Misalnya anda menggunakan IP `192.168.0.11` sebagai alamat Raspberry, jika pengguna memanggil alamat `http://192.168.0.11/contoh` pada browser, Apache akan mencari file "contoh" di direktori `/var/www/html`.
 
-Untuk menambahkan file baru, situs, dll., Anda perlu menambahkannya ke direktori ini.
+Untuk menambahkan file baru, situs, dll.,pengguna perlu menambahkannya ke direktori ini.
 
-Anda sekarang dapat menggunakan Raspberry Anda untuk membuat situs dalam HTML, CSS, dan JavaScript, secara internal. Namun dalam kasus kali ini, pengguna membutuhkan apache sebagai alat untuk menjalankan PHPmyAdmin yang dimana sebagai alat untuk membantu mengolah Database MySQL.
+Pengguna sekarang dapat menggunakan Raspberry untuk membuat situs dalam HTML, CSS, dan JavaScript, secara internal. Namun dalam kasus kali ini, pengguna membutuhkan apache sebagai alat untuk menjalankan PHPmyAdmin yang dimana sebagai alat untuk membantu mengolah Database MySQL.
+
+## Instalasi PHP
+
+Lanjutkan dengan mengetikan:
+```
+sudo apt install php php-mbstring
+```
+lalu cek apakah php telah jalan.
+
+Anda akan terlebih dahulu menghapus file `index.html` di direktori `/var/www/html`.
+Kemudian buat file "index.php" di direktori ini, dengan baris perintah ini
+```
+echo "<?php phpinfo ();?>" > /var/www/html/index.php
+```
+
+Dari sini, lakukan hal sama dengan pemeriksaan Apache. Pastikan hasil browser mendekati gambar ini:  
+![alt text](images/phpinfo.jpg "PHP Info")  
+
+jika tidak memiliki antarmuka (_GUI_), gunakan metode SSH yang sama seperti sebelumnya, dan cari kata-kata `PHP Version`
+
+## Database MySQL untuk server
+
+Setelah mengatur PHP, pengguna perlu menyimpan informasi agar dapat digunakan di situs terkait. Untuk hal ini, databaselah yang paling sering digunakan. Oleh karena itu diperlukanlah DBMS (Database Management System), yaitu MySQL.
+
+MySQL adalah DBMS yang gratis, kuat, dan digunakan secara besar-besaran (sekitar 56% pangsa pasar DBMS gratis). Di sini sekali lagi, MySQL sangat penting untuk pengembangan, apa pun bahasanya, bahwa pengguna harus benar-benar belajar dan menguasainya.
+
+Untuk menerapkannya, pengguna memerlukan `mysql-server` dan `php-mysql` (yang akan berfungsi sebagai penghubung antara php dan mysql). Ketikan perintah:  
+```
+sudo apt install mysql-server php-mysql
+```
+lalu pastikan mysql telah jalan.
+```
+sudo mysql --user=root
+```
+dan pengguna akan pindah ke konsol `MariaDB`.
+Disini, user _root_ bawaan mysql tidak dihapus dan membuat _root_ mysql yang baru dengan hak akses berbeda karena, default _root_ hanya dapat digunakan dengan akun _root_ Linux, sehingga tidak tersedia untuk skrip webserver dan PHP.
+
+Untuk melakukannya, setelah terhubung ke MySQL, jalankan saja perintah (ganti kata sandi dengan kata sandi yang diinginkan):
