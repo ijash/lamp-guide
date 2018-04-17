@@ -54,3 +54,43 @@ Pada menu pilihan **raspi-config**, masuk ke **Interfacing Options**, lalu pilih
 
 lalu pilih `yes` untuk mengaktifkan SSH server pada Raspberry Pi.
 ![alt text](images/ssh.png "SSH")  
+
+Selain mengaktifkan SSH server, menu ini bisa juga untuk mengubah password bawaan menjadi pasword yang dikehendaki.
+
+## Remote Login menggunakan ssh
+Setelah Network dan SSH diatur dengan benar, maka pengguna bisa mengontrol Raspberry Pi dari perangkat atau komputer lain, sehingga tidak perlu memasang monitor dan keyboard pada Raspberry Pi. Cukup menghidupkan dan memasang kabel LAN, dan Raspberry bisa digunakan melalui SSH.</br>
+pada OS Windows, pengguna dapat menggunakan SSH dengan software [Putty](https://www.putty.org/) atau software SSH client lainnya. Namun, pada panduan kali ini, penulis menggunakan OS *Linux Mint* sebagai *remote-client* untuk SSH terhadap Raspberry Pi.
+
+## Apache Web server
+setelah memegang alih Raspberry Pi dengan SSH, pengguna dapat menggunakan shell untuk keperluan instalasi Apache dengan mengetikkan:
+```
+sudo apt update
+sudo apt upgrade
+sudo apt install apache2
+```
+lalu sebagai tambahan, pengguna bisa mengatur hak akses pada folder `/var/www/html` agar memudahkan pengguna dalam mengatur website nantinya. Maka, ketikan:
+```
+sudo chown -R pi:www-data /var/www/html/
+sudo chmod -R 770 /var/www/html/
+```
+Setelah instalasi selesai, kita dapat menguji apakah Apache berfungsi dengan benar dengan membuka alamat Raspberry.
+Untuk melakukan ini, Anda perlu mencoba mengakses Raspberry dari port `80`. Caranya cukup mudah, yaitu dengan membuka browser web anda, dan masuk ke alamat IP LAN raspberry anda. Anda kemudian harus mendapatkan halaman dengan pesan seperti `It Works!` Dan banyak teks lainnya.
+
+Jika Anda belum memiliki GUI di Raspbian Anda, atau Anda menggunakan SSH untuk terhubung ke Raspberry Anda, Anda dapat menggunakan perintah berikut:
+```
+wget -O check_apache.html [alamat IP Raspberry]
+
+```
+Perintah ini akan menyimpan kode HTML dari halaman dalam file "check_apache.html" di direktori saat ini.
+Jadi Anda hanya perlu membaca file tersebut dengan perintah:
+```
+cat ./check_apache.html
+```
+Jika Anda melihat `It Works!` di dalam kode  berarti Apache telah bekerja dengan semestinya.
+
+Apache menggunakan direktori `/var/www/html` sebagai root untuk situs Anda. Ini berarti bahwa ketika Anda memanggil Raspberry Anda di port 80 (http), Apache mencari file di `/var/www/html`.
+Misalnya, jika Anda memanggil alamat `http://[alamat Raspberry]/contoh`, Apache akan mencari file "contoh" di direktori `/var/www/html`.
+
+Untuk menambahkan file baru, situs, dll., Anda perlu menambahkannya ke direktori ini.
+
+Anda sekarang dapat menggunakan Raspberry Anda untuk membuat situs dalam HTML, CSS, dan JavaScript, secara internal. Namun dalam kasus kali ini, pengguna membutuhkan apache sebagai alat untuk menjalankan PHPmyAdmin yang dimana sebagai alat untuk membantu mengolah Database MySQL.
