@@ -7,10 +7,7 @@ Mengapa menggunakan Raspberry sebagai server daripada menggunakan penyedia layan
  Namun, untuk mendukung fleksibilitas lebih, Praktikum makalah ini menggunakan Raspberry Pi 3 Model B, dengan kapasitas 1GB RAM, dibandingkan dengan model Raspberry Pi lainnya yang memiliki spesifikasi lebih rendah.
 
   Pertanyaan yang sekarang muncul adalah, bagaimana cara membuat server web di Raspeberry Pi?
-
-
-## PHP
-
+#### PHP
 Pertama-tama, Pengguna harus tahu bahwa PHP adalah bahasa pemrograman yang ditafsirkan (_interpreted language_). Dan seperti dalam kasus server, akronim PHP dapat memiliki beberapa arti. Ketika berbicara tentang PHP, berarti berbicara tentang bahasa atau penerjemah(_interpreter_).
 Di sini, ketika berbicara tentang menginstal PHP, itu berarti akan menginstal _interpreter_, untuk menggunakan bahasa PHP.
 
@@ -21,7 +18,8 @@ PHP itu gratis, dan dikelola oleh Yayasan PHP, serta Zend Enterprise, dan berbag
 Ini adalah salah satu bahasa pemrograman yang paling banyak digunakan, dan bahkan yang paling banyak digunakan untuk pemrograman web, dengan sekitar 79% pangsa pasar.
 
 Sekali lagi, semua keterampilan yang dapat diperoleh, pada bahasa, atau pada instalasi dan konfigurasi interpreter, akan selalu berguna. Jadi kami hanya dapat menyarankan Anda untuk belajar PHP, yang benar-benar bahasa yang indah dan terlalu sering diremehkan.
-
+#### mysql
+MySQL adalah DBMS yang gratis, kuat, dan digunakan secara besar-besaran (sekitar 56% pangsa pasar DBMS gratis). Di sini sekali lagi, MySQL sangat penting untuk pengembangan, apa pun bahasanya, bahwa pengguna harus benar-benar belajar dan menguasainya.
 
 ## Persiapan Hardware
 *masukan foto2 dan spek*
@@ -132,8 +130,6 @@ jika tidak memiliki antarmuka (_GUI_), gunakan metode SSH yang sama seperti sebe
 
 Setelah mengatur PHP, pengguna perlu menyimpan informasi agar dapat digunakan di situs terkait. Untuk hal ini, databaselah yang paling sering digunakan. Oleh karena itu diperlukanlah DBMS (Database Management System), yaitu MySQL.
 
-MySQL adalah DBMS yang gratis, kuat, dan digunakan secara besar-besaran (sekitar 56% pangsa pasar DBMS gratis). Di sini sekali lagi, MySQL sangat penting untuk pengembangan, apa pun bahasanya, bahwa pengguna harus benar-benar belajar dan menguasainya.
-
 Untuk menerapkannya, pengguna memerlukan `mysql-server` dan `php-mysql` (yang akan berfungsi sebagai penghubung antara php dan mysql). Ketikan perintah:  
 ```
 sudo apt install mysql-server php-mysql
@@ -145,4 +141,20 @@ sudo mysql --user=root
 dan pengguna akan pindah ke konsol `MariaDB`.
 Disini, user _root_ bawaan mysql tidak dihapus dan membuat _root_ mysql yang baru dengan hak akses berbeda karena, default _root_ hanya dapat digunakan dengan akun _root_ Linux, sehingga tidak tersedia untuk skrip webserver dan PHP.
 
-Untuk melakukannya, setelah terhubung ke MySQL, jalankan saja perintah (ganti kata sandi dengan kata sandi yang diinginkan):
+Untuk melakukannya, setelah terhubung ke MySQL, jalankan perintah (ganti kata sandi dengan kata sandi yang diinginkan):
+```
+DROP USER 'root'@'localhost';
+CREATE USER 'root'@'localhost' IDENTIFIED BY 'password_yang_diinginkan';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost'
+```
+untuk membuka MySQL ke koneksi publik, buat user _root_ publik, gunakan:
+```
+CREATE USER 'root'@'%' IDENTIFIED BY 'password_yang_diinginkan';
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'
+```
+Membuat _root_ ke publik tidak disarankan atas alasan keamanan. Namun boleh digunakan jika untuk keperluan pribadi dan tidak menggunakan data-data yang vital.
+
+Di penggunaan berikutnya, pengguna tidak perlu lagi menggunakan `sudo` untuk mengakses MySQL dengan perintah:
+```
+mysql --user=root --password=yourmysqlpassword
+```
