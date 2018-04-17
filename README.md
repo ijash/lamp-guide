@@ -4,9 +4,7 @@
 
 Mengapa menggunakan Raspberry sebagai server daripada menggunakan penyedia layanan khusus web hosting?  
  Pertama, dari sudut pandang ekonomi, Bahwa layanan web hosting tidak gratis dan harus membayar setiap bulan/tahun. Berbeda dengan Raspberry yang hanya perlu koneksi. Selain itu, dengan memilih Raspberry, Pengguna memiliki kemungkinan untuk memodifikasi sesuai kebutuhan sesuai dengan keinginan pengguna (contoh: ukuran disk, hosting Database, dll.), hal tersebut biasanya tidak dapat dilakukan pada web hosting khusus, yang sering dijual bersama domain dengan kapasitas konfigurasi rendah.  
- Namun, untuk mendukung fleksibilitas lebih, Praktikum makalah ini menggunakan Raspberry Pi 3 Model B, dengan kapasitas 1GB RAM, dibandingkan dengan model Raspberry Pi lainnya yang memiliki spesifikasi lebih rendah.
-
-  Pertanyaan yang sekarang muncul adalah, bagaimana cara membuat server web di Raspeberry Pi?
+ Namun, untuk mendukung fleksibilitas lebih, Praktikum ini menggunakan Raspberry Pi 3 Model B, dengan kapasitas 1GB RAM, dibandingkan dengan model Raspberry Pi lainnya yang memiliki spesifikasi lebih rendah. Dan nama yang biasa disebut untuk kumpulan software yang akan di install adalah _LAMP stack_ yang berarti _Linux Apache MySQL PHP_. Pertanyaan yang sekarang muncul adalah, bagaimana cara membuat server web di Raspeberry Pi?
 #### PHP
 Pertama-tama, Pengguna harus tahu bahwa PHP adalah bahasa pemrograman yang ditafsirkan (_interpreted language_). Dan seperti dalam kasus server, akronim PHP dapat memiliki beberapa arti. Ketika berbicara tentang PHP, berarti berbicara tentang bahasa atau penerjemah(_interpreter_).
 Di sini, ketika berbicara tentang menginstal PHP, itu berarti akan menginstal _interpreter_, untuk menggunakan bahasa PHP.
@@ -39,7 +37,7 @@ Berikut ini adalah alat-alat yang perlu dipersiapkan:
 
 
 ## Instalasi OS
-*masukan terapan install di sd card*
+*masukan gambar install di sd card*
 
 Sebelum dinyalakan, Raspberry Pi wajib menggunakan OS yang mendukung prosesor jenis ARM. Salah satunya adalah Raspbian, yaitu berupa OS GNU/Linux turunan dari Debian. Untuk membuat server, pilih **Raspbian Stretch Lite** yang disediakan di [situs resmi Raspberry Pi](https://www.raspberrypi.org/downloads/raspbian/).  
 Setelah download, file berupa kompresi zip, dan harus diekstrak dari kompresi tersebut hingga berupa satu file *virtual CD* berekstensi "*.iso*".
@@ -156,5 +154,15 @@ Membuat _root_ ke publik tidak disarankan atas alasan keamanan. Namun boleh digu
 
 Di penggunaan berikutnya, pengguna tidak perlu lagi menggunakan `sudo` untuk mengakses MySQL dengan perintah:
 ```
-mysql --user=root --password=yourmysqlpassword
+mysql --user=root --password=password_yang_telah_dibuat
 ```
+
+## PHPmyAdmin
+
+PHPmyAdmin adalah fitur opsional namun membantu dalam pengaturan database. Untung menginstall PHPmyAdmin, ketikan:  
+```
+sudo apt install phpmyadmin
+```
+Program instalasi PHPMyAdmin akan menanyakan beberapa pertanyaan. Tentang bagian `dbconfig-common`, pilih untuk tidak menggunakannya (karena dalam praktek sebelumya telah mengkonfigurasi database). Tentang server untuk mengkonfigurasi PHPMyAdmin, pilih Apache. Dan kata sandi root adalah yang telah diatur sebelumnya untuk MySQL.
+
+Untuk memeriksa apakah PHPMyAdmin berfungsi, akses menggunakan alamat Raspberry Anda diikuti oleh / phpmyadmin. Misalnya, secara lokal akan menjadi `http://127.0.0.1/phpmyadmin` pada web browser.
