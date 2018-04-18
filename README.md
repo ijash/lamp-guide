@@ -1,4 +1,5 @@
 # Penerapan MySQL Database Server Pada Raspberry Pi
+![logo](images/pi_logo.png "Raspberry Pi")  
 
 ## Pendahuluan
 
@@ -17,10 +18,12 @@ Ini adalah salah satu bahasa pemrograman yang paling banyak digunakan, dan bahka
 
 Sekali lagi, semua keterampilan yang dapat diperoleh, pada bahasa, atau pada instalasi dan konfigurasi interpreter, akan selalu berguna. Jadi kami hanya dapat menyarankan Anda untuk belajar PHP, yang benar-benar bahasa yang indah dan terlalu sering diremehkan.
 #### mysql
+![mysql](images/mysql_logo.png "MySQL")
 MySQL adalah DBMS yang gratis, kuat, dan digunakan secara besar-besaran (sekitar 56% pangsa pasar DBMS gratis). Di sini sekali lagi, MySQL sangat penting untuk pengembangan, apa pun bahasanya, bahwa pengguna harus benar-benar belajar dan menguasainya.
 
 ## Persiapan Hardware
 *masukan foto2 dan spek*
+![Raspberry Pi 3 Model B](images/raspberrypi3b.png "Raspberry Pi 3 Model B")
 
 Berikut ini adalah alat-alat yang perlu dipersiapkan:  
 * Raspberry Pi 3 Model
@@ -34,11 +37,11 @@ Berikut ini adalah alat-alat yang perlu dipersiapkan:
 * Laptop atau PC
 * Koneksi Internet
 
-
+![Raspberry Pi 3 Model B](images/pi3spec.png "Raspberry Pi 3 Model B")
 
 ## Instalasi OS
 *masukan gambar install di sd card*
-
+![Raspberry Pi 3 Details](images/sd_card_install.jpg "Raspberry Pi 3 SD card")
 Sebelum dinyalakan, Raspberry Pi wajib menggunakan OS yang mendukung prosesor jenis ARM. Salah satunya adalah Raspbian, yaitu berupa OS GNU/Linux turunan dari Debian. Untuk membuat server, pilih **Raspbian Stretch Lite** yang disediakan di [situs resmi Raspberry Pi](https://www.raspberrypi.org/downloads/raspbian/).  
 Setelah download, file berupa kompresi zip, dan harus diekstrak dari kompresi tersebut hingga berupa satu file *virtual CD* berekstensi "*.iso*".
 
