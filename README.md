@@ -140,7 +140,7 @@ Pengguna sekarang dapat menggunakan Raspberry untuk membuat situs dalam HTML, CS
 
 Lanjutkan dengan mengetikan:
 ```
-sudo apt install PHP PHP-mbstring
+sudo apt install php php-mbstring
 ```
 lalu cek apakah PHP telah jalan.
 
@@ -159,9 +159,9 @@ Jika tidak memiliki antarmuka (_GUI_), gunakan metode SSH yang sama seperti sebe
 
 Setelah mengatur PHP, pengguna perlu menyimpan informasi agar dapat digunakan di situs terkait. Untuk hal ini, databaselah yang paling sering digunakan. Maka diperlukan DBMS (Database Management System), yaitu MySQL.
 
-Pengguna memerlukan `mysql-server` dan `PHP-mysql` (yang akan berfungsi sebagai penghubung antara PHP dan mysql). Ketikan perintah:  
+Pengguna memerlukan `mysql-server` dan `php-mysql` (yang akan berfungsi sebagai penghubung antara PHP dan mysql). Ketikan perintah:  
 ```
-sudo apt install mysql-server PHP-mysql
+sudo apt install mysql-server php-mysql
 ```
 Pastikan mysql telah jalan.
 ```
